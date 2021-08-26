@@ -4,7 +4,7 @@
       <img alt="Vue logo" src="../assets/logo.png">
     </div>
     <div class="buttonArea">
-      <router-link to="/stock" class="routerStockBtn" >내 주식</router-link>
+      <router-link to="/stock" class="routerStockBtn">내 주식</router-link>
       <router-link to="/asset" class="routerAssetBtn" >내 자산</router-link>
     </div>
   </div>
@@ -13,6 +13,7 @@
 <script>
 export default {
   name: 'Main',
+
   props: {
 
   },
