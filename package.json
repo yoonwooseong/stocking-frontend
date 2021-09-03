@@ -10,7 +10,10 @@
     "docker": "npm run build && npm run docker-build"
   },
   "dependencies": {
+    "@j-t-mcc/vue3-chartjs": "^1.1.4",
     "chart.js": "^3.5.1",
+    "chartjs-plugin-datalabels": "^2.0.0",
+    "chartjs-plugin-zoom": "^1.1.1",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
     "vue-chart.js": "^0.2.0",
@@ -40,7 +43,9 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "no-console": "off"
+    }
   },
   "browserslist": [
     "> 1%",
