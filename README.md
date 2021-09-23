@@ -15,9 +15,19 @@ Stocking 프로젝트 Frontend 레포지토리
 
 ## 📋 문서
 
+- __스토리보드__ : [카카오오븐](https://ovenapp.io/view/DOhZ6TnDKWFjINtQKjnj2RAulxojOZCb#3QyvB)
+
 <br>
 
 ## ✏ 요구사항 분석 (Frontend)  
+
+- Vue Cli 프로젝트 구조화          ( Vue 3 / Vue cli 4.x )
+- API 연동                         ( axios )
+- 내 주식 동적 UI 및 기능 개발
+- 내 자산 UI 차트화                ( Vue3ChartJs )
+- 로그인 기능 연동
+- Single Page Application 구현    ( Vue Router)
+
 
 <br>
 
@@ -28,6 +38,7 @@ Stocking 프로젝트 Frontend 레포지토리
 ├── README.md
 ├── babel.config.js
 ├── package.json
+├── .env
 ├── public
 │   ├── favicon.ico
 │   └── index.html
