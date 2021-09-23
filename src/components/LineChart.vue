@@ -1,5 +1,6 @@
 <template>
   <div style="height:600px;width:600px;">
+    {{message}}dd
     <vue3-chart-js v-bind="{ ...lineChart }" />
   </div>
 </template>
@@ -8,6 +9,7 @@
 import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
 import zoomPlugin from "chartjs-plugin-zoom";
 import dataLabels from "chartjs-plugin-datalabels";
+// import { toRef } from '@vue/reactivity';
 
 // globally registered and available for all charts
 Vue3ChartJs.registerGlobalPlugins([zoomPlugin]);
@@ -18,7 +20,8 @@ export default {
     Vue3ChartJs,
   },
   props: { 
-    msg: Object 
+    message: String,
+    labels: Object
   },
   watch: {
     msg() {
@@ -28,25 +31,19 @@ export default {
   
   data() {
     return {
-      // labels : this.lineData.labels,
+      // label : this.props.labels,
       // datasets : this.lineData.datasets
     }
   },
-  setup() {
+  
+  setup(props) {
+    // const data = toRef(props);
     const lineChart = {
       type: "line",
       // locally registered and available for this chart
       plugins: [dataLabels],
       data: {
-        labels : [
-          "20.12",
-          "21.01",
-          "21.02",
-          "21.03",
-          "21.04",
-          "21.05",
-          "21.06",
-        ],
+        labels : props.labels,
         datasets : [
           {
             label: "수입",
@@ -102,10 +99,11 @@ export default {
         },
       },
     };
-
+    
     return {
       lineChart,
     };
   },
 };
+
 </script>
