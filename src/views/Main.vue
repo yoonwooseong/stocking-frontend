@@ -5,21 +5,31 @@
     </div>
     <div class="buttonArea">
       <router-link to="/stock" class="routerStockBtn">내 주식</router-link>
-      <router-link to="/asset" class="routerAssetBtn" >내 자산</router-link>
+      <router-link to="/asset" class="routerAssetBtn" @click="testData">내 자산</router-link>
     </div>
   </div>
+  <input v-model="message" placeholder="여기를 수정해보세요">
+    <p>메시지: {{ message }}</p>
 </template>
 
 <script>
+
 export default {
   name: 'Main',
-
   props: {
 
   },
+  data: () => ({
+    message:"",
+    now:""
+  } ),
   components:{
     
+  },
+  methods:{
+    
   }
+   
 }
 </script>
 

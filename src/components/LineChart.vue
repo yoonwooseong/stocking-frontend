@@ -1,55 +1,109 @@
+<template>
+  <div style="height:600px;width:600px;">
+    {{message}}dd
+    <vue3-chart-js v-bind="{ ...lineChart }" />
+  </div>
+</template>
+
 <script>
-  //Importing Line class from the vue-chartjs wrapper
-  import {Line} from 'vue-chartjs'
-  //Exporting this so it can be used in other components
-  export default { 
-    extends: Line,
-    data () {
-      return {
-        datacollection: {
-          //Data to be represented on x-axis
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
-                    'August', 'September', 'October', 'November', 'December'], 
-          datasets: [
-            {
-              label: 'Data One',
-              backgroundColor: '#f87979',
-              pointBackgroundColor: 'white',
-              borderWidth: 1,
-              pointBorderColor: '#249EBF',
-              //Data to be represented on y-axis
-              data: [40, 20, 30, 50, 90, 10, 20, 40, 50, 70, 90, 100]
-            }
-          ]
-        },
-        //Chart.js options that controls the appearance of the chart
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              },
-              gridLines: {
-                display: true
-              }
-            }],
-            xAxes: [ {
-              gridLines: {
-                display: false
-              }
-            }]
-          },
-          legend: {
-            display: true
-          },
-          responsive: true,
-          maintainAspectRatio: false
-        }
-      }
-    },
-    mounted () {
-      //renderChart function renders the chart with the datacollection and options object.
-      this.renderChart(this.datacollection, this.options)
+import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
+import zoomPlugin from "chartjs-plugin-zoom";
+import dataLabels from "chartjs-plugin-datalabels";
+// import { toRef } from '@vue/reactivity';
+
+// globally registered and available for all charts
+Vue3ChartJs.registerGlobalPlugins([zoomPlugin]);
+
+export default {
+  name: "LineChart",
+  components: {
+    Vue3ChartJs,
+  },
+  props: { 
+    message: String,
+    labels: Object
+  },
+  watch: {
+    msg() {
+        this.msg
     }
-  }
+  },
+  
+  data() {
+    return {
+      // label : this.props.labels,
+      // datasets : this.lineData.datasets
+    }
+  },
+  
+  setup(props) {
+    // const data = toRef(props);
+    const lineChart = {
+      type: "line",
+      // locally registered and available for this chart
+      plugins: [dataLabels],
+      data: {
+        labels : props.labels,
+        datasets : [
+          {
+            label: "수입",
+            data: [150, 180, 180, 230, 230, 230, 230],
+            fill: false,
+            borderColor: "#41B883",
+            tension: 0.1
+            // backgroundColor: "black",
+          },
+          {
+            label: "지출",
+            data: [80, 75, 90, 70, 65, 70, 80],
+            fill: false,
+            borderColor: "#E46651",
+            tension: 0.1
+            // backgroundColor: "blue",
+          },
+          {
+            label: "총 자산",
+            data: [70, 185, 275, 435, 590, 750, 900],
+            fill: false,
+            borderColor: "#5586EB",
+            tension: 0.1,
+            // backgroundColor: "blue",
+          }
+        ],
+      },
+      options: {
+        plugins: {
+          zoom: {
+            zoom: {
+              wheel: {
+                enabled: true,
+              },
+              pinch: {
+                enabled: true,
+              },
+              mode: "y",
+            },
+          },
+          datalabels: {
+            backgroundColor: function (context) {
+              return context.dataset.backgroundColor;
+            },
+            borderRadius: 1,
+            color: "black",
+            font: {
+              weight: "bold",
+            },
+            formatter: Math.round,
+            padding: 6,
+          },
+        },
+      },
+    };
+    
+    return {
+      lineChart,
+    };
+  },
+};
+
 </script>
