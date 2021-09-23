@@ -9,13 +9,30 @@
 import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
 import zoomPlugin from "chartjs-plugin-zoom";
 import dataLabels from "chartjs-plugin-datalabels";
+import { drawChartData } from '@/api/api.js';
 // import { toRef } from '@vue/reactivity';
 
 // globally registered and available for all charts
 Vue3ChartJs.registerGlobalPlugins([zoomPlugin]);
+var label2 = [];
 
 export default {
   name: "LineChart",
+  created(){
+    this.testData();
+    this.$nextTick();
+  },
+  methods:{
+    async testData (){
+      const { data } = await drawChartData();
+      console.log(data);
+      label2 = data;
+    },
+    drawChart (){
+      label2=["20.12", "21.01", "21.02", "21.03", "21.04", "21.05", "21.06"];
+    }
+  },
+
   components: {
     Vue3ChartJs,
   },
@@ -27,23 +44,20 @@ export default {
     msg() {
         this.msg
     }
-  },
+  },  
+  data: () => ({
+    labelss : ["20.12", "21.01", "21.02", "21.03", "21.04", "21.05", "21.06"]
+  } ),
   
-  data() {
-    return {
-      // label : this.props.labels,
-      // datasets : this.lineData.datasets
-    }
-  },
-  
-  setup(props) {
+  setup() {
+    
     // const data = toRef(props);
     const lineChart = {
       type: "line",
       // locally registered and available for this chart
       plugins: [dataLabels],
       data: {
-        labels : props.labels,
+        labels : label2,
         datasets : [
           {
             label: "수입",
