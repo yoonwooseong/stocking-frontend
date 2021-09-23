@@ -9,11 +9,21 @@
 </template>
 
 <script>
+import { searchStock } from '@/api/api.js';
 import LineChart from '@/components/LineChart'
 import PieChart from '@/components/PieChart'
 
 export default {
   name: 'Asset',
+  created(){
+    this.testData();
+  },
+  methods:{
+    async testData (){
+      const { data } = await searchStock('005930');
+      console.log(data);
+    }
+  },
   data: () => ({
     message:"gd",
     labels : [
