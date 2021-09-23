@@ -19,8 +19,8 @@ export default {
     this.testData();
   },
   methods:{
-    async testData (){
-      const { data } = await searchStock('005930');
+    async testData () {
+      const data = await searchStock('005930');
       console.log(data);
     },
   },

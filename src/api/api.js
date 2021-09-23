@@ -11,17 +11,25 @@ import axios from "axios";
 
 // API
 const axiosService = axios.create({
-    baseURL:'http://146.56.100.95:8080',
+    // baseURL:'http://146.56.100.95:8080',
+    baseURL: process.env.VUE_APP_API_URL,
 });
 
-function searchAssets(params){
+function searchAssets(params) {
     return axiosService.post('/asset/myasset', params);
 }
 
-function searchStock(name){
+async function searchStock(name) {
     // const params = new URLSearchParams();
     // params.append('itemcode', name);
-    return axiosService.post('/stock/'+name);
+    let result;
+    try {
+        result = await axiosService.get('/stock/' + name + '/');
+    } catch (err) {
+        console.log(err.message);
+    }
+
+    return result;
 }
 
 function drawChartData(){
