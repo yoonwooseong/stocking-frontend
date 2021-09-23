@@ -5,7 +5,7 @@
     </div>
     <div class="buttonArea">
       <router-link to="/stock" class="routerStockBtn">내 주식</router-link>
-      <router-link to="/asset" class="routerAssetBtn" >내 자산</router-link>
+      <router-link to="/asset" class="routerAssetBtn" @click="testData">내 자산</router-link>
     </div>
   </div>
   <input v-model="message" placeholder="여기를 수정해보세요">
@@ -13,15 +13,35 @@
 </template>
 
 <script>
+import { testAPI } from '@/api/api.js';
+
 export default {
   name: 'Main',
-
   props: {
 
   },
+  data: () => ({
+    message:"",
+    now:""
+  } ),
   components:{
     
+  },
+  methods:{
+    test2(){
+      const param = {}
+      const { data } = testAPI(param);
+      console.log(data);
+      this.$data.now = data.now;
+    },
+    async testData(){
+      const param = {}
+      const { data } = await testAPI(param);
+      console.log("test Data !!!");
+      console.log(data);
+    }
   }
+   
 }
 </script>
 
