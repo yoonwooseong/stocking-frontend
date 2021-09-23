@@ -19,8 +19,8 @@ function searchAssets(params){
 }
 
 function searchStock(name){
-    const params = new URLSearchParams();
-    params.append('itemcode', name);
-    return axiosService.post('/stock/005930', params);
+    // const params = new URLSearchParams();
+    // params.append('itemcode', name);
+    return axiosService.post('/stock/'+name);
 }
 export { searchAssets, searchStock };
