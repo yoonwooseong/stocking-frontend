@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import { testAPI } from '@/api/api.js';
 
 export default {
   name: 'Main',
@@ -28,18 +27,7 @@ export default {
     
   },
   methods:{
-    test2(){
-      const param = {}
-      const { data } = testAPI(param);
-      console.log(data);
-      this.$data.now = data.now;
-    },
-    async testData(){
-      const param = {}
-      const { data } = await testAPI(param);
-      console.log("test Data !!!");
-      console.log(data);
-    }
+    
   }
    
 }
