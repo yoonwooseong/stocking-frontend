@@ -31,4 +31,11 @@ async function searchStock(name) {
 
     return result;
 }
-export { searchAssets, searchStock };
+
+function drawChartData(){
+    // const params = new URLSearchParams();
+    // params.append('itemcode', name);
+    return ["20.12", "21.01", "21.02", "21.03", "21.04", "21.05", "21.06"];
+}
+
+export { searchAssets, searchStock, drawChartData };

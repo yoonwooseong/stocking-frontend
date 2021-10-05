@@ -3,7 +3,7 @@
     Asset page
   </div>
   <div class="contents">
-    <LineChart :message=message :label=labels></LineChart>
+    <LineChart :message=message></LineChart>
     <PieChart></PieChart>
   </div>
 </template>
@@ -22,19 +22,10 @@ export default {
     async testData () {
       const data = await searchStock('005930');
       console.log(data);
-    }
+    },
   },
   data: () => ({
     message:"gd",
-    labels : [
-      "20.12",
-      "21.01",
-      "21.02",
-      "21.03",
-      "21.04",
-      "21.05",
-      "21.06",
-    ]
   } ),
   components: {
       LineChart, PieChart
